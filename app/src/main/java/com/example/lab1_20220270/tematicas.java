@@ -46,7 +46,11 @@ public class tematicas extends AppCompatActivity {
                 new ActivityResultCallback<ActivityResult>() {
                     @Override
                     public void onActivityResult(ActivityResult result) {
-                        gestorJuego = (GestorJuego) result.getData().getSerializableExtra("gestorJuego");
+                        if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                            // Recibir el GestorJuego actualizado desde ahorcado
+                            // Mantiene las partidas jugadas hasta que regrese a MainActivity
+                            gestorJuego = (GestorJuego) result.getData().getSerializableExtra("gestorJuego");
+                        }
                     }
                 }
         );

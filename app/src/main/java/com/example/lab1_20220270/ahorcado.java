@@ -137,14 +137,10 @@ public class ahorcado extends AppCompatActivity {
     }
     
     private void mostrarEstadisticas() {
-        // Cancelar la partida actual al entrar a estadísticas
-        if (gestorJuego != null && gestorJuego.isJuegoActivo()) {
-            gestorJuego.terminarJuego("Canceló");
-        }
-        
+        // Simplemente ir a estadísticas
         Intent intent = new Intent(this, estadisticas.class);
         intent.putExtra("gestorJuego", gestorJuego);
-        startActivityForResult(intent, 100); // Usar startActivityForResult
+        startActivity(intent);
     }
     
     private void deshabilitarBoton(char letra) {
@@ -287,8 +283,6 @@ public class ahorcado extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // Simplificado: no hacer nada automático en onResume
-        // El manejo se hace en onActivityResult
     }
     
     private void iniciarNuevaPartida() {
@@ -311,25 +305,10 @@ public class ahorcado extends AppCompatActivity {
     
     @Override
     public void onBackPressed() {
-        // Al regresar desde ahorcado, debe regresar a temáticas con un nuevo GestorJuego
-        // Esto limpia el historial de partidas
-        GestorJuego nuevoGestor = new GestorJuego();
-        nuevoGestor.setNombreJugador(nombreJugador);
-        
+        // Regresar a temáticas manteniendo el mismo gestorJuego
         Intent intent = new Intent();
-        intent.putExtra("gestorJuego", nuevoGestor);
+        intent.putExtra("gestorJuego", gestorJuego);
         setResult(RESULT_OK, intent);
         finish();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 100 && resultCode == RESULT_OK) {
-            // Regresó de estadísticas, iniciar nueva partida
-            if (gestorJuego != null && !gestorJuego.isJuegoActivo()) {
-                iniciarNuevaPartida();
-            }
-        }
     }
 }

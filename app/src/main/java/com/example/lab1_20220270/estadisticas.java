@@ -36,80 +36,54 @@ public class estadisticas extends AppCompatActivity {
     }
     
     private void inicializarViews() {
-        try {
-            gestorJuego = (GestorJuego) getIntent().getSerializableExtra("gestorJuego");
-            
-            jugadorNombre = findViewById(R.id.textView9);
-            fechaInicio = findViewById(R.id.textView17);
-            cantidadPartidas = findViewById(R.id.textView18);
-            listaPartidas = findViewById(R.id.textView20);
-        } catch (Exception e) {
-            e.printStackTrace();
-            // Si hay error, cerrar la activity
-            finish();
-        }
+        gestorJuego = (GestorJuego) getIntent().getSerializableExtra("gestorJuego");
+        
+        jugadorNombre = findViewById(R.id.textView9);
+        fechaInicio = findViewById(R.id.textView17);
+        cantidadPartidas = findViewById(R.id.textView18);
+        listaPartidas = findViewById(R.id.textView20);
     }
     
     private void mostrarEstadisticas() {
-        try {
-            if (gestorJuego != null) {
-                if (jugadorNombre != null) {
-                    jugadorNombre.setText("Jugador: " + gestorJuego.getNombreJugador());
-                }
-                
-                if (fechaInicio != null) {
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - hh:mma", Locale.getDefault());
-                    String fechaFormateada = sdf.format(new Date()).replace("AM", "am").replace("PM", "pm");
-                    fechaInicio.setText("Inicio: " + fechaFormateada);
-                }
-                
-                if (cantidadPartidas != null) {
-                    int totalPartidas = gestorJuego.getHistorialPartidas().size();
-                    cantidadPartidas.setText("Cantidad de partidas: " + totalPartidas);
-                }
-                
-                mostrarListaPartidas();
-            } else {
-                // Si gestorJuego es null, cerrar la activity
-                finish();
+        if (gestorJuego != null) {
+            if (jugadorNombre != null) {
+                jugadorNombre.setText("Jugador: " + gestorJuego.getNombreJugador());
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            finish();
+            
+            if (fechaInicio != null) {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - hh:mma", Locale.getDefault());
+                String fechaFormateada = sdf.format(new Date()).replace("AM", "am").replace("PM", "pm");
+                fechaInicio.setText("Inicio: " + fechaFormateada);
+            }
+            
+            if (cantidadPartidas != null) {
+                int totalPartidas = gestorJuego.getHistorialPartidas().size();
+                cantidadPartidas.setText("Cantidad de partidas: " + totalPartidas);
+            }
+            
+            mostrarListaPartidas();
         }
     }
     
     private void mostrarListaPartidas() {
-        try {
-            if (listaPartidas != null && gestorJuego != null) {
-                StringBuilder sb = new StringBuilder();
-                
-                // Verificar si hay partidas en el historial
-                if (gestorJuego.getHistorialPartidas().isEmpty()) {
-                    sb.append("Aún no has completado ninguna partida.");
-                } else {
-                    // Mostrar todas las partidas del historial
-                    for (ResultadoPartida partida : gestorJuego.getHistorialPartidas()) {
-                        sb.append("Juego ").append(partida.getNumeroJuego()).append(": ")
-                          .append(partida.getEstado()).append(" / Tiempo: ")
-                          .append(partida.getTiempo()).append("s\n");
-                    }
+        if (listaPartidas != null && gestorJuego != null) {
+            StringBuilder sb = new StringBuilder();
+            
+            // Verificar si hay partidas en el historial
+            if (gestorJuego.getHistorialPartidas().isEmpty()) {
+                sb.append("Aún no has completado ninguna partida.");
+            } else {
+                // Mostrar todas las partidas del historial
+                for (ResultadoPartida partida : gestorJuego.getHistorialPartidas()) {
+                    sb.append("Juego ").append(partida.getNumeroJuego()).append(": ")
+                      .append(partida.getEstado()).append(" / Tiempo: ")
+                      .append(partida.getTiempo()).append("s\n");
                 }
-                
-                listaPartidas.setText(sb.toString());
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            if (listaPartidas != null) {
-                listaPartidas.setText("Error al cargar las estadísticas.");
-            }
+            
+            listaPartidas.setText(sb.toString());
         }
     }
     
-    @Override
-    public void onBackPressed() {
-        // Devolver resultado OK al regresar
-        setResult(RESULT_OK);
-        finish();
-    }
+
 }
