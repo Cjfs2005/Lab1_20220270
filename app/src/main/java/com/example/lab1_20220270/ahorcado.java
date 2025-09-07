@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 public class ahorcado extends AppCompatActivity {
 
@@ -88,6 +89,19 @@ public class ahorcado extends AppCompatActivity {
         }
     }
     
+    /*
+     Modelo: Claude Sonnet 4
+     
+     Prompt: Eres un programador de aplicaciones móviles y debes implementar 
+     un sistema de botones alfabéticos dinámicos para un juego de ahorcado en Android,
+     donde cada botón debe manejar una letra específica y ejecutar la verificación
+     correspondiente al ser presionado.
+     
+     Modificaciones: Tuve que adaptar los IDs de los botones para que coincidieran
+     exactamente con los definidos en el archivo XML del layout, y ajustar la lógica
+     de conversión de índices a caracteres para que funcionara correctamente con
+     el alfabeto y la estructura del juego.
+     */
     private void configurarBotonesAlfabeto() {
         int[] idsLetras = {
             R.id.buttonA, R.id.buttonB, R.id.buttonC, R.id.buttonD, R.id.buttonE,
@@ -137,7 +151,6 @@ public class ahorcado extends AppCompatActivity {
     }
     
     private void mostrarEstadisticas() {
-        // Simplemente ir a estadísticas
         Intent intent = new Intent(this, estadisticas.class);
         intent.putExtra("gestorJuego", gestorJuego);
         startActivity(intent);
@@ -191,7 +204,6 @@ public class ahorcado extends AppCompatActivity {
         String textoComodin = gestorJuego.getComodinesDisponibles() + "/" + gestorJuego.getAciertosConsecutivos();
         comodin.setText(textoComodin);
         
-        // Mostrar estado simple si el juego está activo
         if (gestorJuego.isJuegoActivo() && estado != null) {
             estado.setText("En curso");
             estado.setTextColor(getResources().getColor(android.R.color.black));
@@ -246,6 +258,17 @@ public class ahorcado extends AppCompatActivity {
         actualizarViews();
     }
     
+    /*
+     Modelo: Claude Sonnet 4
+     
+     Prompt: Eres un programador de aplicaciones móviles y debes implementar
+     un sistema de cronómetro en tiempo real para un juego de Android que se
+     actualice cada segundo y se detenga automáticamente cuando el juego termine.
+      
+     Modificaciones: Tuve que adaptar la lógica de verificación del estado del juego
+     para que el cronómetro se sincronizara correctamente con la clase GestorJuego,
+     y gestionar los procesos de pausar y destruir de la actividad
+     */
     private void iniciarCronometro() {
         handler = new Handler();
         cronometro = new Runnable() {
@@ -253,7 +276,6 @@ public class ahorcado extends AppCompatActivity {
             public void run() {
                 if (gestorJuego != null && gestorJuego.isJuegoActivo()) {
                     segundosTranscurridos++;
-                    // Simplificado: no mostrar tiempo durante el juego
                     if (estado != null) {
                         estado.setText("En curso");
                     }
@@ -299,16 +321,14 @@ public class ahorcado extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        // Detener cronómetro cuando se sale de la activity
         detenerCronometro();
     }
     
     @Override
     public void onBackPressed() {
-        // Regresar a temáticas manteniendo el mismo gestorJuego
         Intent intent = new Intent();
         intent.putExtra("gestorJuego", gestorJuego);
         setResult(RESULT_OK, intent);
-        finish();
+        super.onBackPressed();
     }
 }

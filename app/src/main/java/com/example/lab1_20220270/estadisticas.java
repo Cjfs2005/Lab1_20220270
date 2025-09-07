@@ -69,11 +69,9 @@ public class estadisticas extends AppCompatActivity {
         if (listaPartidas != null && gestorJuego != null) {
             StringBuilder sb = new StringBuilder();
             
-            // Verificar si hay partidas en el historial
             if (gestorJuego.getHistorialPartidas().isEmpty()) {
                 sb.append("Aún no has completado ninguna partida.");
             } else {
-                // Mostrar todas las partidas del historial
                 for (ResultadoPartida partida : gestorJuego.getHistorialPartidas()) {
                     sb.append("Juego ").append(partida.getNumeroJuego()).append(": ")
                       .append(partida.getEstado()).append(" / Tiempo: ")

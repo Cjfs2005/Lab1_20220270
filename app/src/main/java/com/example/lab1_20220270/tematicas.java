@@ -43,15 +43,8 @@ public class tematicas extends AppCompatActivity {
     private void configurarActivityResultLauncher() {
         juegoLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
-                        if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                            // Recibir el GestorJuego actualizado desde ahorcado
-                            // Mantiene las partidas jugadas hasta que regrese a MainActivity
-                            gestorJuego = (GestorJuego) result.getData().getSerializableExtra("gestorJuego");
-                        }
-                    }
+                result -> {
+                    gestorJuego = (GestorJuego) result.getData().getSerializableExtra("gestorJuego");
                 }
         );
     }
