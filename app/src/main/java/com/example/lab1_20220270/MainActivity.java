@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText editTextNombre;
     private Button buttonJugar;
     private TextView textViewTitulo;
+    private GestorJuego gestorJuego;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +67,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String nombre = editTextNombre.getText().toString().trim();
+                gestorJuego = new GestorJuego();
+                gestorJuego.setNombreJugador(nombre);
+                
                 Intent intent = new Intent(MainActivity.this, tematicas.class);
-                intent.putExtra("nombreJugador", nombre);
+                intent.putExtra("gestorJuego", gestorJuego);
                 startActivity(intent);
             }
         });

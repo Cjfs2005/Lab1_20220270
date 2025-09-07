@@ -1,6 +1,8 @@
 package com.example.lab1_20220270;
 
-public class ResultadoPartida {
+import java.io.Serializable;
+
+public class ResultadoPartida implements Serializable {
     private String estado;
     private int tiempo;
     private String fecha;

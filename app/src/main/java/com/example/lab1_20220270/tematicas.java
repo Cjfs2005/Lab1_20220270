@@ -7,6 +7,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -17,6 +21,8 @@ public class tematicas extends AppCompatActivity {
     private String nombreJugador;
     private TextView textViewNombre;
     private Button buttonRedes, buttonCiber, buttonFibra;
+    private GestorJuego gestorJuego;
+    private ActivityResultLauncher<Intent> juegoLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,13 +35,27 @@ public class tematicas extends AppCompatActivity {
             return insets;
         });
         
+        configurarActivityResultLauncher();
         inicializarViews();
         configurarEventos();
     }
     
+    private void configurarActivityResultLauncher() {
+        juegoLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        gestorJuego = (GestorJuego) result.getData().getSerializableExtra("gestorJuego");
+                    }
+                }
+        );
+    }
+    
     private void inicializarViews() {
-        nombreJugador = getIntent().getStringExtra("nombreJugador");
-        
+        gestorJuego = (GestorJuego) getIntent().getSerializableExtra("gestorJuego");
+        nombreJugador = gestorJuego.getNombreJugador();
+
         textViewNombre = findViewById(R.id.nombre);
         buttonRedes = findViewById(R.id.buttonRedes);
         buttonCiber = findViewById(R.id.buttonCiber);
@@ -66,9 +86,9 @@ public class tematicas extends AppCompatActivity {
     }
     
     private void iniciarJuego(int indiceTematica) {
-        Intent intent = new Intent(tematicas.this, ahorcado.class);
-        intent.putExtra("nombreJugador", nombreJugador);
+        Intent intent = new Intent(this, ahorcado.class);
         intent.putExtra("indiceTematica", indiceTematica);
-        startActivity(intent);
+        intent.putExtra("gestorJuego", gestorJuego);
+        juegoLauncher.launch(intent);
     }
 }

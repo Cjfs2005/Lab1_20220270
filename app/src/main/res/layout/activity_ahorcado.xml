@@ -377,13 +377,6 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button_space1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:visibility="invisible" />
-
-            <Button
                 android:id="@+id/buttonV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -428,12 +421,6 @@
                 android:paddingRight="0dp"
                 android:text="Z" />
 
-            <Button
-                android:id="@+id/button_space2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:visibility="invisible" />
         </LinearLayout>
 
     </LinearLayout>

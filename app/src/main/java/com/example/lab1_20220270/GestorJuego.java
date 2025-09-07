@@ -1,9 +1,10 @@
 package com.example.lab1_20220270;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class GestorJuego {
+public class GestorJuego implements Serializable {
     private String nombreJugador;
     private String tematicaSeleccionada;
     private ArrayList<ResultadoPartida> historialPartidas;
@@ -186,5 +187,9 @@ public class GestorJuego {
 
     public long getTiempoInicio() {
         return tiempoInicio;
+    }
+
+    public void setNombreJugador(String nombreJugador) {
+        this.nombreJugador = nombreJugador;
     }
 }
