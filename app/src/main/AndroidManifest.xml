@@ -13,13 +13,16 @@
         android:theme="@style/Theme.Lab1_20220270">
         <activity
             android:name=".estadisticas"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".ahorcado" />
         <activity
             android:name=".ahorcado"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".tematicas" />
         <activity
             android:name=".tematicas"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
