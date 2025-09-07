@@ -8,17 +8,6 @@
     tools:context=".ahorcado">
 
     <TextView
-        android:id="@+id/palabra_adivinar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Palabra"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
-
-    <TextView
         android:id="@+id/nombre_tematica"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,29 +47,76 @@
         android:id="@+id/imageView4"
         android:layout_width="237dp"
         android:layout_height="238dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nombre_tematica"
         app:srcCompat="@mipmap/ic_antena1_foreground" />
 
+    <TextView
+        android:id="@+id/palabra_adivinar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Palabra"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+    <TextView
+        android:id="@+id/comodin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="X / Y"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.961"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView14" />
+
     <ImageView
         android:id="@+id/imageHead"
         android:layout_width="67dp"
         android:layout_height="61dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="28dp"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.785"
+        app:layout_constraintHorizontal_bias="0.791"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView4"
         app:srcCompat="@mipmap/ic_head1_foreground" />
 
     <ImageView
+        android:id="@+id/imageBrazoDere"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="72dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.821"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView4"
+        app:srcCompat="@mipmap/ic_piernaizq1_foreground" />
+
+    <ImageView
+        android:id="@+id/imageBrazoIzq"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="72dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.711"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView4"
+        app:srcCompat="@mipmap/ic_piernadere1_foreground" />
+
+    <ImageView
         android:id="@+id/imageTorso"
         android:layout_width="66dp"
         android:layout_height="74dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="80dp"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.785"
@@ -89,57 +125,33 @@
         app:srcCompat="@mipmap/ic_torso1_foreground" />
 
     <ImageView
-        android:id="@+id/imagePiernaDere"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="145dp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.818"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView4"
-        app:srcCompat="@mipmap/ic_piernadere1_foreground" />
-
-    <ImageView
-        android:id="@+id/imageBrazoIzq"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="76dp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.705"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView4"
-        app:srcCompat="@mipmap/ic_piernadere1_foreground" />
-
-    <ImageView
         android:id="@+id/imagePiernaIzq"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginTop="145dp"
+        android:layout_marginTop="140dp"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.705"
+        app:layout_constraintHorizontal_bias="0.711"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView4"
         app:srcCompat="@mipmap/ic_piernaizq1_foreground" />
 
     <ImageView
-        android:id="@+id/imageBrazoDere"
+        android:id="@+id/imagePiernaDere"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="140dp"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.818"
+        app:layout_constraintHorizontal_bias="0.821"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView4"
-        app:srcCompat="@mipmap/ic_piernaizq1_foreground" />
+        app:srcCompat="@mipmap/ic_piernadere1_foreground" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="353dp"
-        android:layout_height="200dp"
+        android:layout_width="349dp"
+        android:layout_height="182dp"
         android:layout_marginTop="20dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -430,7 +442,7 @@
         android:id="@+id/button_newgame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:text="Nuevo Juego"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -458,16 +470,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:srcCompat="@drawable/baseline_star_outline_24" />
-
-    <TextView
-        android:id="@+id/comodin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="X / Y"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.961"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView14" />
 
     <TextView
         android:id="@+id/estado"
